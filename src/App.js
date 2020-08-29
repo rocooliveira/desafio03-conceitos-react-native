@@ -27,13 +27,13 @@ export default function App() {
 
     if(response.status === 200){
 
-      const repoIndex = repositories.findIndex(repo => repo.id == id);
+      const repoUpdated = repositories.map( repo => {
 
-      let _repositories = repositories;
+        return ( repo.id === id) ? response.data : repo;
 
-      _repositories[repoIndex].likes = response.data.likes;
+      });
 
-      setRepositories([..._repositories]);
+      setRepositories( repoUpdated );
     }
 
   }
